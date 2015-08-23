@@ -64,6 +64,7 @@ static void woof(irc_session_t *session, const char *nick,
         const char *channel, const char *input)
 {
     char msg[256];
+    char *msgcut;
     const char *woofmsg;
     const char *name;
 
@@ -80,8 +81,9 @@ static void woof(irc_session_t *session, const char *nick,
     }
 
     strcpy(msg, name);
-    strcat(msg, ": ");
-    strcat(msg, woofmsg);
+    msgcut = strtok(msg, " ");
+    strcat(msgcut, ": ");
+    strcat(msgcut, woofmsg);
 
     irc_cmd_msg(session, channel, msg);
 }
