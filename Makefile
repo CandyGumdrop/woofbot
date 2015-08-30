@@ -15,6 +15,8 @@ all: woofbot
 woofbot: $(OBJFILES)
 	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
 
+woofbot.o: config.h
+
 %.o: %.c
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
