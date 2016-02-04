@@ -120,7 +120,9 @@ static void event_channel(irc_session_t *session, const char *event,
         strncpy(commandbuf, params[1] + 1, 127);
         commandbuf[127] = '\0';
 
-        commandstr = strtok(commandbuf, " ");
+        if (!(commandstr = strtok(commandbuf, " "))) {
+            return;
+        }
 
         while (command_names[i] &&
                 (notfound = strcmp(commandstr, command_names[i]))) {
